@@ -9,12 +9,44 @@ $(document).ready(function() {
       var mensaje  =$("#message").val();
 
       var datos = {nombre, empresa, email, telefono, mensaje};
-console.log(datos);
 
-//      $.ajax({
-//        type: "POST",
-  //        url: "vendor/mail/contact_me.php",
-    //      data: datos,
+    $.ajax({
+        type: "POST",
+        url: "vendor/mail/contact_me.php",
+        data: datos,
+
+				success: function(respuesta) {
+
+					if (respuesta == 'FALTAN DATOS!'){
+
+					Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'No se pudo enviar Mensaje!',
+					footer: 'Faltan datos por completar'
+				});
+
+					return false;
+
+					}else{
+
+						Swal.fire({
+						icon: 'success',
+						title: 'Exito',
+						text: 'Su Mensaje fue enviado',
+						footer: 'Gracias'
+
+
+					});
+
+
+
+
+					}
+					$("#formEjemplo")[0].reset();
+					return false;
+				}
 
   });
     });
+		    });

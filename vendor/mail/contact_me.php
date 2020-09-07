@@ -1,7 +1,7 @@
 <?php
 
 	// Check for empty fields
-	if(empty($_POST['name'])	||	empty($_POST['email'])	||	empty($_POST['phone']) ||	empty($_POST['empresa'])	||	empty($_POST['message'])   ||	!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
+	if(empty($_POST['nombre'])	||	empty($_POST['email'])	||	empty($_POST['telefono']) ||	empty($_POST['empresa'])	||	empty($_POST['mensaje'])   ||	!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
 	   {
 
 	   	echo "FALTAN DATOS!";
@@ -9,20 +9,20 @@
 
 	   }
 
-	$name = strip_tags(htmlspecialchars($_POST['name']));
+	$name = strip_tags(htmlspecialchars($_POST['nombre']));
 	$empresa = strip_tags(htmlspecialchars($_POST['empresa']));
 	$email_address = strip_tags(htmlspecialchars($_POST['email']));
-	$phone = strip_tags(htmlspecialchars($_POST['phone']));
-	$message = strip_tags(htmlspecialchars($_POST['message']));
+	$phone = strip_tags(htmlspecialchars($_POST['telefono']));
+	$message = strip_tags(htmlspecialchars($_POST['mensaje']));
 
 	// Create the email and send the message
 
-	$to = 'ivanruizdelfin@gmail.com';
+	$to = 'comercial@qdit.co';
 
 	// Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
 
 	$email_subject = "Formulario de Contacto:  $name";
-	$email_body = "Tu has recibido un nuevo contacto del formulario de peoplebpo\n\n"."Estos son los detalles:\n\nNombre: $name\n\nEmail: $email_address\n\nTelefono: $phone\n\nMensage:\n$message";
+	$email_body = "Tu has recibido un nuevo contacto del formulario de la web de JoinUp\n\n"."Estos son los detalles:\n\nNombre: $name\n\nEmpresa: $empresa\n\nEmail: $email_address\n\nTelefono: $phone\n\nMensage:\n$message";
 	$headers = "De: noreply@peoplebpo.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
 	$headers .= "Reply-To: $email_address";
 	mail($to,$email_subject,$email_body,$headers);
